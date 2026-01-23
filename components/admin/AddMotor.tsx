@@ -139,7 +139,7 @@ export default function AddMotor() {
                                 Điền đầy đủ thông tin chi tiết và địa điểm xe để đưa vào hệ thống.
                             </p>
                         </div>
-                        <div className="flex gap-3">
+                        <div className="flex gap-3 max-sm:hidden">
                             <button
                                 type="button"
                                 onClick={() => router.back()}

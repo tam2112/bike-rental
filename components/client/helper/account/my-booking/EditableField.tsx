@@ -32,7 +32,7 @@ export default function EditableField<T extends FieldValues>({
                         type={type}
                         {...register(name)}
                         onClick={(e) => e.currentTarget.showPicker()}
-                        className="w-full border text-sm px-2.5 py-1 rounded-lg border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-800/50 text-neutral-dark dark:text-white focus:border-primary focus:ring-primary"
+                        className="w-full border text-sm px-2.5 max-sm:px-3 py-1 max-sm:py-2 rounded-lg border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-800/50 text-neutral-dark dark:text-white focus:border-primary focus:ring-primary"
                     />
                 ) : (
                     <p className="text-sm font-medium text-neutral-dark dark:text-white">

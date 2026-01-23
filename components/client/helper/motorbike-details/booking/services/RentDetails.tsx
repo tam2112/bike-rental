@@ -42,7 +42,7 @@ export default function RentDetails({
                     </span>
                     <div className="text-sm">
                         <p className="font-bold text-neutral-dark dark:text-white mb-1">Giờ hoạt động giao nhận xe</p>
-                        <p className="text-slate-600 dark:text-slate-300">
+                        <p className="text-slate-600 dark:text-slate-300 max-sm:text-xs">
                             Chúng tôi hỗ trợ giao nhận xe từ{' '}
                             <span className="font-bold text-primary">7:00 AM đến 22:00 PM</span> hàng ngày. Vui lòng
                             chọn thời gian trong khung giờ này.

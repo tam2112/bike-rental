@@ -64,11 +64,11 @@ export default function Hero() {
                         'linear-gradient(rgba(0, 0, 0, 0.4) 0%, rgba(0, 0, 0, 0.7) 100%), url(/images/bg/bg-hero.jpg)',
                 }}
             >
-                <div className="flex flex-col gap-4 text-center max-w-200 mb-12 animate-fade-in">
-                    <h1 className="text-white text-4xl font-black leading-tight tracking-[-0.033em] md:text-6xl drop-shadow-xl">
+                <div className="flex flex-col gap-4 text-center max-w-200 mb-12 max-sm:mt-8 animate-fade-in">
+                    <h1 className="text-white text-4xl max-sm:text-3xl font-black leading-tight tracking-[-0.033em] md:text-6xl drop-shadow-xl">
                         Khám phá Phú Yên - Xứ sở &quot;Hoa Vàng Cỏ Xanh&quot;
                     </h1>
-                    <h2 className="text-slate-100 text-lg font-medium leading-normal md:text-xl drop-shadow-md">
+                    <h2 className="text-slate-100 text-base font-medium leading-normal md:text-xl drop-shadow-md">
                         Dịch vụ cho thuê xe máy uy tín nhất tại Tuy Hòa. Giao xe tận nơi ga tàu, khách sạn.
                     </h2>
                 </div>

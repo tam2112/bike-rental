@@ -3,6 +3,7 @@ import Image from 'next/image';
 import { CalendarDays, Lightbulb, MapPin, Motorbike, PhoneCall, Rocket, ShieldPlus, User2 } from 'lucide-react';
 
 import { assets } from '@/public/assets';
+import Link from 'next/link';
 
 export default function AboutUs() {
     return (
@@ -17,7 +18,7 @@ export default function AboutUs() {
                     }}
                 >
                     <div className="flex flex-col gap-4 text-center max-w-200z-10">
-                        <h1 className="text-white text-4xl font-black leading-tight tracking-[-0.033em] md:text-6xl drop-shadow-lg">
+                        <h1 className="text-white sm:text-4xl text-3xl font-black leading-tight tracking-[-0.033em] md:text-6xl drop-shadow-lg">
                             Vi vu Phú Yên <br />
                             Trọn vẹn từng khoảnh khắc
                         </h1>
@@ -28,9 +29,12 @@ export default function AboutUs() {
                         </h2>
                     </div>
                     <div className="flex flex-col sm:flex-row gap-3 z-10 mt-4">
-                        <button className="flex min-w-40 cursor-pointer items-center justify-center overflow-hidden rounded-lg h-12 px-6 bg-primary text-white text-base font-bold leading-normal tracking-[0.015em] shadow-lg hover:bg-blue-600 hover:scale-105 transition-all">
+                        <Link
+                            href={'/xe-may'}
+                            className="flex min-w-40 cursor-pointer items-center justify-center overflow-hidden rounded-lg h-12 px-6 bg-primary text-white text-base font-bold leading-normal tracking-[0.015em] shadow-lg hover:bg-blue-600 hover:scale-105 transition-all"
+                        >
                             <span className="truncate">Xem xe ngay</span>
-                        </button>
+                        </Link>
                     </div>
                 </div>
             </div>
@@ -190,28 +194,28 @@ export default function AboutUs() {
                     <div className="bg-primary/5 rounded-2xl p-8 md:p-12 mt-4">
                         <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
                             <div className="flex flex-col gap-1">
-                                <span className="text-4xl font-black text-primary">1</span>
-                                <span className="text-slate-600 dark:text-slate-400 font-medium text-sm">
+                                <span className="sm:text-4xl text-3xl font-black text-primary">1</span>
+                                <span className="text-slate-600 dark:text-slate-400 font-medium sm:text-sm text-xs">
                                     Năm hoạt động
                                 </span>
                             </div>
                             <div className="flex flex-col gap-1">
-                                <span className="text-4xl font-black text-primary">30+</span>
-                                <span className="text-slate-600 dark:text-slate-400 font-medium text-sm">
+                                <span className="sm:text-4xl text-3xl font-black text-primary">30+</span>
+                                <span className="text-slate-600 dark:text-slate-400 font-medium sm:text-sm text-xs">
                                     Xe máy mới
                                 </span>
                             </div>
                             <div className="flex flex-col gap-1">
-                                <span className="text-4xl font-black text-primary">90+</span>
-                                <span className="text-slate-600 dark:text-slate-400 font-medium text-sm">
+                                <span className="sm:text-4xl text-3xl font-black text-primary">90+</span>
+                                <span className="text-slate-600 dark:text-slate-400 font-medium sm:text-sm text-xs">
                                     Khách hàng thân thiết
                                 </span>
                             </div>
                             <div className="flex flex-col gap-1">
-                                <span className="text-4xl font-black text-primary md:text-xl lg:text-3xl flex items-center justify-center h-10">
+                                <span className="sm:text-4xl text-3xl font-black text-primary md:text-xl lg:text-3xl flex items-center justify-center h-10">
                                     7h-22h
                                 </span>
-                                <span className="text-slate-600 dark:text-slate-400 font-medium text-sm">
+                                <span className="text-slate-600 dark:text-slate-400 font-medium sm:text-sm text-xs">
                                     Khung giờ phục vụ
                                 </span>
                             </div>
@@ -295,17 +299,23 @@ export default function AboutUs() {
                     <h2 className="text-white text-3xl md:text-4xl font-bold tracking-tight">
                         Sẵn sàng khám phá Gành Đá Đĩa?
                     </h2>
-                    <p className="text-slate-300 text-lg">
+                    <p className="text-slate-300 sm:text-lg text-sm">
                         Đừng để việc thiếu phương tiện làm chậm hành trình của bạn. Thuê xe ngay hôm nay để nhận ưu đãi
                         cho khách hàng mới.
                     </p>
-                    <div className="flex gap-4 pt-2">
-                        <button className="bg-primary hover:bg-blue-600 text-white font-bold py-3 px-8 rounded-lg transition-colors shadow-lg">
+                    <div className="flex gap-4 pt-2 max-sm:text-sm">
+                        <Link
+                            href={'/xe-may'}
+                            className="bg-primary hover:bg-blue-600 text-white font-bold py-3 sm:px-8 px-6 rounded-lg transition-colors shadow-lg"
+                        >
                             Xem danh sách xe
-                        </button>
-                        <button className="bg-white/10 hover:bg-white/20 backdrop-blur-sm text-white border border-white/30 font-bold py-3 px-8 rounded-lg transition-colors">
+                        </Link>
+                        <Link
+                            href={'/lien-he'}
+                            className="bg-white/10 hover:bg-white/20 backdrop-blur-sm text-white border border-white/30 font-bold py-3 sm:px-8 px-6 rounded-lg transition-colors"
+                        >
                             Gọi tư vấn ngay
-                        </button>
+                        </Link>
                     </div>
                 </div>
             </div>

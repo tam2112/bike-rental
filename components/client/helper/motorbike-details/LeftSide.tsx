@@ -174,18 +174,18 @@ export default function LeftSide({ motorbike }: { motorbike: MotorType }) {
                     <div className="mt-8 border-t border-slate-200 dark:border-slate-700 pt-6 space-y-8">
                         {motorbike.ratings.map((rating) => (
                             <div key={rating.id} className="flex gap-4">
-                                <div className="h-10 w-10 rounded-full bg-slate-200 dark:bg-slate-600">
+                                <div className="h-10 min-w-10 rounded-full bg-slate-200 dark:bg-slate-600">
                                     <Image
                                         src={rating.user.avatar[0]?.url || assets.sample_profile}
                                         alt="profile"
                                         width={40}
                                         height={40}
-                                        className="rounded-full object-cover h-10"
+                                        className="rounded-full object-cover h-10 w-10"
                                     />
                                 </div>
                                 <div>
-                                    <div className="flex items-center gap-2">
-                                        <p className="font-bold text-neutral-dark dark:text-white">
+                                    <div className="flex items-center max-sm:justify-between gap-2">
+                                        <p className="font-bold text-neutral-dark dark:text-white max-sm:text-sm max-sm:line-clamp-1 max-sm:max-w-32">
                                             {rating.user.fullName}
                                         </p>
                                         <span className="text-xs text-slate-400">
@@ -196,12 +196,14 @@ export default function LeftSide({ motorbike }: { motorbike: MotorType }) {
                                         {Array.from({ length: 5 }, (_, i) => (
                                             <Star
                                                 key={i}
-                                                size={18}
+                                                size={14}
                                                 className={`shrink-0 fill-current ${rating.rating > i ? 'text-primary' : 'text-gray-300'}`}
                                             />
                                         ))}
                                     </div>
-                                    <p className="text-neutral-dark dark:text-slate-300 mt-1">{rating.review}</p>
+                                    <p className="text-neutral-dark dark:text-slate-300 mt-0.5 max-sm:text-sm">
+                                        {rating.review}
+                                    </p>
                                 </div>
                             </div>
                         ))}

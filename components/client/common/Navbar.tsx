@@ -13,6 +13,7 @@ import { assets } from '@/public/assets';
 
 import ThemeToggler from '../helper/ThemeToggler';
 import { DesktopUserSkeleton, MobileUserSkeleton } from '../helper/skeleton';
+import ThemeTogglerMobile from '../helper/ThemeTogglerMobile';
 
 export default function Navbar() {
     const { currentUser, fetchCurrentUser, isLoading } = useUserStore();
@@ -149,6 +150,7 @@ export default function Navbar() {
                                 <ChevronRight size={16} className="text-slate-400" />
                             </Link>
                         ))}
+                        <ThemeTogglerMobile isOpen={open} setIsOpen={setOpen} />
                     </nav>
 
                     <div className="p-6 border-t border-neutral-200 dark:border-slate-800 space-y-3">

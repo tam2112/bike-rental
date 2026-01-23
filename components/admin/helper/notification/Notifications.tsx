@@ -51,7 +51,13 @@ export default function Notifications({ notifications, onRedirect, onNotifyNew }
                         )}
                     </div>
                     {notify.type === 'BOOKING' ? (
-                        <div className="flex-1 min-w-0">
+                        <div
+                            onClick={() => {
+                                onRedirect(notify.type, notify.booking?.id, notify.rating?.id);
+                                onNotifyNew(notify.id);
+                            }}
+                            className="flex-1 min-w-0"
+                        >
                             <div className="flex justify-between items-start mb-1">
                                 <span className="inline-flex items-center px-2 py-0.5 rounded text-[10px] font-bold bg-blue-100 text-blue-600 uppercase tracking-tighter mb-1">
                                     Đơn đặt xe mới
@@ -85,7 +91,13 @@ export default function Notifications({ notifications, onRedirect, onNotifyNew }
                             </div>
                         </div>
                     ) : (
-                        <div className="flex-1 min-w-0">
+                        <div
+                            onClick={() => {
+                                onRedirect(notify.type, notify.booking?.id, notify.rating?.id);
+                                onNotifyNew(notify.id);
+                            }}
+                            className="flex-1 min-w-0"
+                        >
                             <div className="flex justify-between items-start mb-1">
                                 <span className="inline-flex items-center px-2 py-0.5 rounded text-[10px] font-bold bg-amber-100 text-amber-600 uppercase tracking-tighter mb-1">
                                     Đánh giá mới
@@ -123,7 +135,7 @@ export default function Notifications({ notifications, onRedirect, onNotifyNew }
                             onRedirect(notify.type, notify.booking?.id, notify.rating?.id);
                             onNotifyNew(notify.id);
                         }}
-                        className="shrink-0 px-4 py-2 bg-primary text-white text-xs font-bold rounded-lg hover:bg-primary/90 transition-all shadow-md shadow-primary/20"
+                        className="shrink-0 px-4 py-2 bg-primary text-white text-xs font-bold rounded-lg hover:bg-primary/90 transition-all shadow-md shadow-primary/20 max-sm:hidden"
                     >
                         Xem chi tiết
                     </button>

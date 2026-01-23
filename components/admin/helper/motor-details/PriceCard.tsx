@@ -1,3 +1,6 @@
+'use client';
+
+import { Link as ScrollLink } from 'react-scroll';
 import { currency, thousandSeparator } from '@/lib/utils';
 
 import { CalendarDays } from 'lucide-react';
@@ -17,14 +20,18 @@ export default function PriceCard({ price }: PriceCardProps) {
                 </span>
                 <span className="text-neutral-dark dark:text-gray-400 font-medium">/ ngày</span>
             </div>
-            <div className="flex flex-col gap-3">
-                <button className="w-full flex items-center justify-center gap-2 rounded-lg h-10 px-6 bg-white dark:bg-slate-700 border border-[#e7edf3] dark:border-[#293038] hover:bg-gray-50 dark:hover:bg-slate-700/50 text-neutral-dark dark:text-white font-medium transition-colors">
-                    <span className="material-symbols-outlined">
-                        <CalendarDays size={14} />
-                    </span>{' '}
-                    Xem lịch xe
-                </button>
-            </div>
+            <ScrollLink
+                to="motor-bookings"
+                containerId="motor-details-container"
+                spy
+                smooth
+                className="w-full flex items-center justify-center gap-2 rounded-lg h-10 px-6 bg-white dark:bg-slate-700 border border-[#e7edf3] dark:border-[#293038] hover:bg-gray-50 dark:hover:bg-slate-700/50 text-neutral-dark dark:text-white font-medium transition-colors cursor-pointer"
+            >
+                <span className="material-symbols-outlined">
+                    <CalendarDays size={14} />
+                </span>{' '}
+                Xem lịch xe
+            </ScrollLink>
         </div>
     );
 }

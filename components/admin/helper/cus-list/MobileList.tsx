@@ -35,8 +35,12 @@ export default function MobileList({ users }: MobileListProps) {
                                 />
                             </div>
                             <div>
-                                <p className="text-xs font-bold text-indigo-600">{cus.email}</p>
-                                <h4 className="font-bold text-slate-900 dark:text-white">{cus.fullName}</h4>
+                                <p className="text-xs font-bold text-indigo-600 max-sm:max-w-30 max-sm:line-clamp-1">
+                                    {cus.email}
+                                </p>
+                                <h4 className="font-bold text-slate-900 dark:text-white max-sm:max-w-30 max-sm:line-clamp-1">
+                                    {cus.fullName}
+                                </h4>
                             </div>
                         </div>
                         <StatusBadge status={cus.status?.name || ''} />

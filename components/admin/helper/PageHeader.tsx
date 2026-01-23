@@ -37,7 +37,7 @@ export default function PageHeader({ breadcrumbs, current }: PageListHeaderProps
                             <span className="text-slate-400">/</span>
                         </div>
                     ))}
-                    <span className="font-medium text-slate-900 dark:text-white sm:max-w-none max-w-24 truncate">
+                    <span className="font-medium text-slate-900 dark:text-white sm:max-w-none max-w-20 line-clamp-1">
                         {current}
                     </span>
                 </div>

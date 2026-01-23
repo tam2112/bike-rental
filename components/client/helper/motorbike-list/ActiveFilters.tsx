@@ -40,7 +40,7 @@ export default function ActiveFilters() {
     if (!hasFilters) return null;
 
     return (
-        <div className="flex flex-wrap items-center gap-2 mb-4">
+        <div className="max-sm:hidden flex flex-wrap items-center gap-2 mb-4">
             <span className="text-sm font-medium text-secondary dark:text-gray-400 mr-1">Bộ lọc:</span>
 
             {/* Badge cho Ngày nhận/trả - Xử lý URL */}

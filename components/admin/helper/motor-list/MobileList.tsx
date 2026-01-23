@@ -34,7 +34,9 @@ export default function MobileList({ motors, onDelete }: MobileListProps) {
                             />
                             <div>
                                 <p className="text-xs font-bold text-indigo-600">{motor.model}</p>
-                                <h4 className="font-bold text-slate-900 dark:text-white">{motor.name}</h4>
+                                <h4 className="font-bold text-slate-900 dark:text-white max-sm:max-w-30 max-sm:line-clamp-1">
+                                    {motor.name}
+                                </h4>
                             </div>
                         </div>
                         <StatusBadge status={motor.status.name} />

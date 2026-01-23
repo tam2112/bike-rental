@@ -40,7 +40,7 @@ export default function MobileList({ bookings, statuses, onUpdateStatus, onCance
                             </div>
                             <div>
                                 <p className="text-xs font-mono font-bold text-indigo-600">{booking.id.slice(0, 15)}</p>
-                                <h4 className="font-bold text-slate-900 dark:text-white">
+                                <h4 className="font-bold text-slate-900 dark:text-white max-sm:max-w-30 max-sm:line-clamp-1">
                                     {booking.customerInfo[0].fullName}
                                 </h4>
                             </div>

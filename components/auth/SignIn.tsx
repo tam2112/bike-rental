@@ -76,7 +76,7 @@ export default function SignIn() {
 
     return (
         <div className="flex-1 flex flex-col items-center justify-center p-4 md:p-8 lg:p-10">
-            <div className="w-full max-w-275 bg-background-light dark:bg-background-dark rounded-2xl shadow-xl overflow-hidden flex flex-col md:flex-row min-h-170 border border-slate-100 dark:border-slate-800">
+            <div className="w-full max-w-275 bg-background-light dark:bg-background-dark rounded-2xl shadow-xl overflow-hidden flex flex-col md:flex-row min-h-170 max-sm:min-h-0 border border-slate-100 dark:border-slate-800">
                 <Banner
                     backgroundImage="url(/images/auth/sign-in.jpg)"
                     text1="Vẻ đẹp hoang sơ của xứ"

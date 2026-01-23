@@ -19,6 +19,7 @@ import { BookingType } from '@/types/booking';
 
 import StatusBadge from '@/components/admin/helper/StatusBadge';
 import EditableField from './EditableField';
+import { useMediaQuery } from 'react-responsive';
 
 export default function UpcomingTrip({ booking }: { booking: BookingType }) {
     const {
@@ -39,6 +40,7 @@ export default function UpcomingTrip({ booking }: { booking: BookingType }) {
 
     const [isCancelling, setIsCancelling] = useState(false);
     const [edit, setEdit] = useState(false);
+    const isMobile = useMediaQuery({ maxWidth: 768 });
 
     const canModify = isBookingCancellable(pickupDate);
     const showCancelButton = canModify && !edit;
@@ -155,11 +157,11 @@ export default function UpcomingTrip({ booking }: { booking: BookingType }) {
                     <form onSubmit={onSubmit} className="p-6 flex flex-col flex-1 justify-between sm:mt-0 mt-10">
                         <div className="flex flex-row justify-between items-start gap-4 mb-4">
                             <div>
-                                <div className="flex items-center gap-2 mb-1">
-                                    <h4 className="text-xl font-bold text-neutral-dark dark:text-white">
+                                <div className="flex max-sm:flex-col sm:items-center sm:gap-2 gap-1 mb-1">
+                                    <h4 className="text-xl font-bold text-neutral-dark dark:text-white line-clamp-2">
                                         {motorbike.name}
                                     </h4>
-                                    <span className="px-2 py-0.5 bg-neutral-light dark:bg-slate-700 text-slate-600 dark:text-slate-300 text-xs rounded font-mono font-medium">
+                                    <span className="px-2 py-0.5 w-fit bg-neutral-light dark:bg-slate-700 text-slate-600 dark:text-slate-300 text-xs rounded font-mono font-medium">
                                         {motorbike.licensePlateNum}
                                     </span>
                                 </div>
@@ -178,7 +180,7 @@ export default function UpcomingTrip({ booking }: { booking: BookingType }) {
                                 <p className="text-xs text-slate-400">Tổng thanh toán</p>
                             </div>
                         </div>
-                        <div className="grid grid-cols-2 gap-4 mb-6">
+                        <div className="grid sm:grid-cols-2 grid-cols-1 gap-4 mb-6">
                             <EditableField
                                 edit={edit}
                                 label="Thời gian nhận xe"
@@ -228,7 +230,7 @@ export default function UpcomingTrip({ booking }: { booking: BookingType }) {
                                         onClick={() => setEdit(true)}
                                         className="flex items-center gap-2 px-6 py-2 bg-primary text-white hover:bg-primary-dark rounded-lg text-sm font-medium transition-colors"
                                     >
-                                        <Edit size={18} /> Chỉnh sửa
+                                        <Edit size={18} /> {!isMobile && 'Chỉnh sửa'}
                                     </button>
                                 )}
                                 {edit && (
@@ -262,7 +264,7 @@ export default function UpcomingTrip({ booking }: { booking: BookingType }) {
                                         <span className="material-symbols-outlined text-[18px]">
                                             <User2 size={18} />
                                         </span>
-                                        Liên hệ hỗ trợ
+                                        {!isMobile ? 'Liên hệ hỗ trợ' : 'Hỗ trợ'}
                                     </button>
                                 )}
                             </div>

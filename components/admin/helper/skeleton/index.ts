@@ -5,6 +5,7 @@ import PieChartSkeleton from './dashboard/PieChartSkeleton';
 import LoadingSkeleton from './list/LoadingSkeleton';
 import MotorDetailsSkeleton from './motor-details/MotorDetailsSkeleton';
 import OrderDetailsSkeleton from './order-details/OrderDetailsSkeleton';
+import RatingDetailsSkeleton from './rating-details/RatingDetailsSkeleton';
 
 export {
     CustomerDetailsSkeleton,
@@ -14,4 +15,5 @@ export {
     LoadingSkeleton,
     MotorDetailsSkeleton,
     OrderDetailsSkeleton,
+    RatingDetailsSkeleton,
 };

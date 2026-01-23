@@ -11,15 +11,18 @@ import { adminPath, ratingPath } from '@/constants/path';
 import StatusBadge from './helper/StatusBadge';
 import PageHeader from './helper/PageHeader';
 import { CustomerCard, FeedbackCard, MotorbikeCard, ReviewCard } from './helper/rating-details';
+import { RatingDetailsSkeleton } from './helper/skeleton';
 
 export default function RatingDetails({ id }: { id: string }) {
-    const { rating, fetchRating } = useRatingStore();
+    const { rating, fetchRating, isLoading } = useRatingStore();
 
     useEffect(() => {
         fetchRating(id);
     }, [fetchRating, id]);
 
-    if (!rating) return null;
+    if (isLoading || !rating) {
+        return <RatingDetailsSkeleton />;
+    }
 
     return (
         <div className="flex-1 flex flex-col h-full bg-background-light dark:bg-background-dark overflow-hidden">

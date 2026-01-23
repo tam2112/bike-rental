@@ -34,12 +34,14 @@ export default function Additional({ register }: AdditionalProps) {
                     </div>
                     <div className="flex flex-1 justify-between">
                         <div>
-                            <p className="text-neutral-dark dark:text-white font-medium">
+                            <p className="text-neutral-dark dark:text-white font-medium max-sm:max-w-48">
                                 Mũ bảo hiểm chất lượng cao (x2)
                             </p>
                             <p className="text-sm text-slate-500 dark:text-slate-400">Đã bao gồm trong giá thuê</p>
                         </div>
-                        <span className="font-bold text-accent dark:text-green-500 text-sm">Miễn phí</span>
+                        <span className="font-bold text-accent dark:text-green-500 text-sm max-sm:text-nowrap">
+                            Miễn phí
+                        </span>
                     </div>
                 </label>
                 <label className="flex items-start gap-4 p-4 border border-slate-200 dark:border-slate-700 rounded-lg cursor-pointer hover:bg-neutral-light dark:hover:bg-slate-800/50 transition-colors group">

@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { useEffect } from 'react';
 import { formatDateFromNow } from '@/lib/utils';
 
-import { CalendarDays, Edit, Trash2 } from 'lucide-react';
+import { CalendarDays, Edit } from 'lucide-react';
 
 import { adminPath, motorPath } from '@/constants/path';
 import { useMotorStore } from '@/store/motor';
@@ -37,7 +37,7 @@ export default function MotorDetails({ id }: { id: string }) {
                 current={`Chi tiết xe`}
             />
             {/* content */}
-            <div className="flex-1 overflow-y-auto p-4 lg:p-8">
+            <div id="motor-details-container" className="flex-1 overflow-y-auto p-4 lg:p-8">
                 <div className="mx-auto w-full flex flex-col gap-6">
                     {/* heading */}
                     <div className="flex flex-col md:flex-row md:items-start justify-between gap-6">
@@ -65,12 +65,6 @@ export default function MotorDetails({ id }: { id: string }) {
                                 </span>
                                 <span>Chỉnh sửa</span>
                             </Link>
-                            <button className="flex items-center justify-center h-10 px-4 rounded-lg border border-red-300 dark:border-red-600 bg-white dark:bg-red-800 text-red-700 dark:text-red-200 hover:bg-red-50 dark:hover:bg-red-700 text-sm font-semibold gap-2 transition-all">
-                                <span className="material-symbols-outlined text-[20px]">
-                                    <Trash2 size={20} />
-                                </span>
-                                <span>Xóa xe</span>
-                            </button>
                         </div>
                     </div>
                     {/* cards */}
@@ -100,7 +94,9 @@ export default function MotorDetails({ id }: { id: string }) {
                         seat={motor.seat}
                     />
                     {/* recent rent */}
-                    <RecentRent bookings={motorBookings} isLoading={isLoading} />
+                    <div id="motor-bookings">
+                        <RecentRent bookings={motorBookings} isLoading={isLoading} />
+                    </div>
                 </div>
             </div>
         </div>

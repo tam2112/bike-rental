@@ -115,7 +115,7 @@ export default function NotificationModal({ setShowNotification }: NotificationM
                         </div>
                         <div>
                             <h2 className="text-lg font-bold text-slate-900 dark:text-white leading-none">Thông báo</h2>
-                            <p className="text-[11px] text-slate-500 dark:text-slate-400 mt-1.5 font-medium uppercase tracking-[0.05em]">
+                            <p className="text-[11px] max-sm:text-[10px] text-slate-500 dark:text-slate-400 mt-1.5 font-medium uppercase tracking-[0.05em]">
                                 Cập nhật đơn hàng & phản hồi
                             </p>
                         </div>

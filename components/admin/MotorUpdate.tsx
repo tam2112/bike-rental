@@ -8,8 +8,6 @@ import { motorSchema, MotorSchema } from '@/lib/validation/motor.form';
 import { getMotorById, updateMotor } from '@/lib/actions/motor.action';
 import { uploadImagesToCloudinary } from '@/lib/upload';
 
-import { Trash2 } from 'lucide-react';
-
 import { adminPath, motorPath } from '@/constants/path';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { usePopup } from '@/hooks/usePopup';
@@ -205,14 +203,6 @@ export default function MotorUpdate({ id, data }: { id: string; data: MotorType 
                                     </span>
                                 </p>
                             </div>
-                        </div>
-                        <div className="flex flex-wrap gap-3 items-center">
-                            <button className="flex items-center justify-center h-10 px-4 rounded-lg border border-red-300 dark:border-red-600 bg-white dark:bg-red-800 text-red-700 dark:text-red-200 hover:bg-red-50 dark:hover:bg-red-700 text-sm font-semibold gap-2 transition-all">
-                                <span className="material-symbols-outlined text-[20px]">
-                                    <Trash2 size={20} />
-                                </span>
-                                <span>Xóa xe</span>
-                            </button>
                         </div>
                     </div>
                     {/* cards */}

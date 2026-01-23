@@ -8,11 +8,14 @@ import { Loader2 } from 'lucide-react';
 import { usePopup } from '@/hooks/usePopup';
 import { newbieCoupon } from '@/constants/coupon';
 import { assets } from '@/public/assets';
+import { useRouter } from 'next/navigation';
 
 export default function Endow() {
     const popup = usePopup();
 
     const [isClaiming, setIsClaiming] = useState(false);
+
+    const router = useRouter();
 
     const handleClaim = useCallback(async () => {
         if (isClaiming) return;
@@ -98,7 +101,10 @@ export default function Endow() {
                         <p className="text-sm text-slate-100 mb-6 font-medium">
                             Tặng ngay 1 lít xăng và 2 áo mưa tiện lợi khi thuê xe từ 3 ngày trở lên.
                         </p>
-                        <button className="bg-white text-primary hover:bg-neutral-light text-sm font-bold py-2 px-5 rounded-lg transition-colors">
+                        <button
+                            onClick={() => router.push('/xe-may')}
+                            className="bg-white text-primary hover:bg-neutral-light text-sm font-bold py-2 px-5 rounded-lg transition-colors"
+                        >
                             Xem chi tiết
                         </button>
                     </div>

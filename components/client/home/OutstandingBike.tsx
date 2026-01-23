@@ -13,6 +13,7 @@ import { useMotorStore } from '@/store/motor';
 import { assets } from '@/public/assets';
 
 import SkeletonCard from '../helper/skeleton/SkeletonCard';
+import { useMediaQuery } from 'react-responsive';
 
 export default function OutstandingBike() {
     const { motors, fetchMotors, isLoading } = useMotorStore();
@@ -23,26 +24,39 @@ export default function OutstandingBike() {
 
     const router = useRouter();
 
+    const isMobile = useMediaQuery({ maxWidth: 768 });
+
     return (
         <section className="w-full flex flex-col gap-8">
             <div className="flex items-center justify-between">
                 <div>
-                    <h2 className="text-3xl font-bold text-neutral-dark dark:text-white tracking-tight">
+                    <h2 className="sm:text-3xl text-xl font-bold text-neutral-dark dark:text-white tracking-tight">
                         Xe máy nổi bật tại Tuy Hòa
                     </h2>
-                    <p className="text-slate-500 mt-2 text-sm">
+                    <p className="text-slate-500 mt-2 sm:text-sm text-xs max-sm:max-w-72">
                         Các dòng xe mới nhất, phù hợp địa hình đèo dốc Phú Yên
                     </p>
                 </div>
-                <Link
-                    className="text-primary font-bold hover:text-blue-600 transition-colors flex items-center gap-1"
-                    href="/xe-may"
-                >
-                    Xem tất cả{' '}
-                    <span className="material-symbols-outlined text-sm font-bold">
-                        <ArrowRight size={14} />
-                    </span>
-                </Link>
+                {isMobile ? (
+                    <Link
+                        className="font-bold transition-colors flex items-center justify-center p-2 rounded-full bg-primary text-white"
+                        href="/xe-may"
+                    >
+                        <span className="material-symbols-outlined text-2xl font-bold">
+                            <ArrowRight size={24} />
+                        </span>
+                    </Link>
+                ) : (
+                    <Link
+                        className="text-primary font-bold hover:text-blue-600 transition-colors flex items-center gap-1"
+                        href="/xe-may"
+                    >
+                        Xem tất cả
+                        <span className="material-symbols-outlined text-sm font-bold">
+                            <ArrowRight size={14} />
+                        </span>
+                    </Link>
+                )}
             </div>
             <div className="">
                 <AnimatePresence mode="wait">
