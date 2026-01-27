@@ -5,7 +5,7 @@ import { Clock10, Mail, MapPin, Motorbike, PhoneCall, Share, ThumbsUp } from 'lu
 export default function Footer() {
     return (
         <footer className="bg-white dark:bg-background-dark border-t border-slate-200 dark:border-slate-800 py-12 px-10 mt-auto">
-            <div className="max-w-360 mx-auto grid grid-cols-1 md:grid-cols-4 gap-12">
+            <div className="max-w-360 mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
                 <div className="col-span-1 md:col-span-1">
                     <div className="flex items-center gap-2 mb-4">
                         <div className="size-8 text-primary">
