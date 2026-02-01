@@ -264,3 +264,28 @@ export const deleteMotorById = async (id: string) => {
         console.log(error);
     }
 };
+
+export async function deleteSelectedMotors(selectedIds: string[]) {
+    try {
+        const count = await prisma.motorbike.deleteMany({
+            where: {
+                id: {
+                    in: selectedIds,
+                },
+            },
+        });
+
+        await prisma.image.deleteMany({
+            where: {
+                motorbikeId: {
+                    in: selectedIds,
+                },
+            },
+        });
+
+        return { success: true, count: count.count };
+    } catch (error) {
+        console.error('Error deleting motorbikes:', error);
+        return { success: false, error: 'Failed to delete motorbikes' };
+    }
+}

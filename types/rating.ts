@@ -58,6 +58,9 @@ export type RatingHooksType = {
         paginatedRatings: RatingType[];
         totalCount: number;
         rawTotal: number | undefined;
+        selectedIds: string[];
+        currentPageIds: string[];
+        isAllSelected: boolean;
     };
     actions: {
         setSearchInput: Dispatch<SetStateAction<string>>;
@@ -70,6 +73,9 @@ export type RatingHooksType = {
         setIsPending: Dispatch<SetStateAction<boolean>>;
         confirmDelete: (ratingId: string) => void;
         confirmPublic: (ratingId: string, isPublic: boolean) => void;
+        toggleSelect: (id: string) => void;
+        toggleSelectAll: () => void;
+        confirmDeleteSelected: () => void;
     };
 };
 
@@ -84,4 +90,7 @@ export type RatingActionHooksType = {
     setIsPending: Dispatch<SetStateAction<boolean>>;
     confirmDelete: (ratingId: string) => void;
     confirmPublic: (ratingId: string, isPublic: boolean) => void;
+    toggleSelect: (id: string) => void;
+    toggleSelectAll: () => void;
+    confirmDeleteSelected: () => void;
 };

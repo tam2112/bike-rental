@@ -26,9 +26,6 @@ export default function Table({ bookings, statuses, onUpdateStatus, onCancel }: 
                 <table className="w-full text-left border-collapse">
                     <thead className="bg-slate-50/50 dark:bg-slate-800/50 border-b border-slate-200 dark:border-slate-800">
                         <tr>
-                            <th className="p-4 w-10">
-                                <input type="checkbox" className="rounded text-indigo-600 accent-indigo-600" />
-                            </th>
                             <th className="px-6 py-4 text-xs font-bold uppercase text-slate-500">Mã đơn</th>
                             <th className="px-6 py-4 text-xs font-bold uppercase text-slate-500">Khách hàng</th>
                             <th className="px-6 py-4 text-xs font-bold uppercase text-slate-500">Phương tiện</th>
@@ -46,9 +43,6 @@ export default function Table({ bookings, statuses, onUpdateStatus, onCancel }: 
                                     key={booking.id}
                                     className="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition-colors"
                                 >
-                                    <td className="p-4">
-                                        <input type="checkbox" className="rounded accent-indigo-600" />
-                                    </td>
                                     <td className="px-6 py-4 font-mono font-bold text-indigo-600">
                                         {booking.id.slice(0, 15)}
                                     </td>

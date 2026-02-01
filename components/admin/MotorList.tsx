@@ -3,7 +3,7 @@
 import Link from 'next/link';
 import { AnimatePresence, motion } from 'framer-motion';
 
-import { Plus } from 'lucide-react';
+import { Loader2, Plus, XCircle } from 'lucide-react';
 
 import { adminPath, motorPath } from '@/constants/path';
 import { useMotorLogic } from '@/hooks/useMotorLogic';
@@ -35,12 +35,39 @@ export default function MotorList() {
                                 xe máy trong hệ thống.
                             </p>
                         </div>
-                        <Link
-                            href={`${motorPath}/them-moi`}
-                            className="w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-xl bg-indigo-600 px-4 py-3 text-sm font-semibold text-white shadow-sm hover:bg-indigo-700 transition-all active:scale-95"
-                        >
-                            <Plus size={18} /> <span>Tạo xe mới</span>
-                        </Link>
+                        <div className="flex items-center gap-4">
+                            {/* NÚT XÓA HÀNG LOẠT TRÊN DESKTOP */}
+                            <AnimatePresence>
+                                {state.selectedIds.length > 0 && (
+                                    <motion.button
+                                        initial={{ opacity: 0, scale: 0.9 }}
+                                        animate={{ opacity: 1, scale: 1 }}
+                                        exit={{ opacity: 0, scale: 0.9 }}
+                                        onClick={actions.confirmDeleteSelected}
+                                        disabled={state.isPending}
+                                        className={`flex items-center gap-2 px-4 py-2 bg-red-500 hover:bg-red-600 text-white rounded-xl shadow-lg transition-all text-sm font-bold max-lg:hidden disabled:opacity-70 disabled:cursor-not-allowed`}
+                                    >
+                                        {state.isPending ? (
+                                            <>
+                                                <Loader2 size={18} className="animate-spin" />
+                                                Đang thực hiện xóa...
+                                            </>
+                                        ) : (
+                                            <>
+                                                <XCircle size={18} />
+                                                Xóa {state.selectedIds.length} xe đã chọn
+                                            </>
+                                        )}
+                                    </motion.button>
+                                )}
+                            </AnimatePresence>
+                            <Link
+                                href={`${motorPath}/them-moi`}
+                                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-xl bg-indigo-600 px-4 py-3 text-sm font-semibold text-white shadow-sm hover:bg-indigo-700 transition-all active:scale-95"
+                            >
+                                <Plus size={18} /> <span>Tạo xe mới</span>
+                            </Link>
+                        </div>
                     </div>
                     {/* Filter */}
                     <Filters state={state} actions={actions} />
@@ -59,9 +86,25 @@ export default function MotorList() {
                                     transition={{ duration: 0.3, ease: 'easeInOut' }}
                                 >
                                     {/* Mobile View */}
-                                    <MobileList motors={state.paginatedMotors} onDelete={actions.confirmDelete} />
+                                    <MobileList
+                                        motors={state.paginatedMotors}
+                                        onDelete={actions.confirmDelete}
+                                        isAllSelected={state.isAllSelected}
+                                        toggleSelectAll={actions.toggleSelectAll}
+                                        selectedIds={state.selectedIds}
+                                        toggleSelect={actions.toggleSelect}
+                                        confirmDeleteSelected={actions.confirmDeleteSelected}
+                                        isPending={state.isPending}
+                                    />
                                     {/* Desktop View */}
-                                    <Table motors={state.paginatedMotors} onDelete={actions.confirmDelete} />
+                                    <Table
+                                        motors={state.paginatedMotors}
+                                        onDelete={actions.confirmDelete}
+                                        isAllSelected={state.isAllSelected}
+                                        toggleSelectAll={actions.toggleSelectAll}
+                                        selectedIds={state.selectedIds}
+                                        toggleSelect={actions.toggleSelect}
+                                    />
                                 </motion.div>
                             )}
                         </AnimatePresence>

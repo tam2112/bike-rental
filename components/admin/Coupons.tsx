@@ -2,6 +2,8 @@
 
 import { AnimatePresence, motion } from 'framer-motion';
 
+import { Delete, Loader2 } from 'lucide-react';
+
 import { useCouponLogic } from '@/hooks/useCouponLogic';
 import { adminPath } from '@/constants/path';
 
@@ -33,6 +35,31 @@ export default function Coupons() {
                                 phiếu giảm giá trong hệ thống.
                             </p>
                         </div>
+                        {/* NÚT XÓA HÀNG LOẠT TRÊN DESKTOP */}
+                        <AnimatePresence>
+                            {state.selectedIds.length > 0 && (
+                                <motion.button
+                                    initial={{ opacity: 0, scale: 0.9 }}
+                                    animate={{ opacity: 1, scale: 1 }}
+                                    exit={{ opacity: 0, scale: 0.9 }}
+                                    onClick={actions.confirmDeleteSelected}
+                                    disabled={state.isPending}
+                                    className={`flex items-center gap-2 px-4 py-2 bg-red-500 hover:bg-red-600 text-white rounded-xl shadow-lg transition-all text-sm font-bold max-lg:hidden disabled:opacity-70 disabled:cursor-not-allowed`}
+                                >
+                                    {state.isPending ? (
+                                        <>
+                                            <Loader2 size={18} className="animate-spin" />
+                                            Đang thực hiện xóa...
+                                        </>
+                                    ) : (
+                                        <>
+                                            <Delete size={18} />
+                                            Xóa {state.selectedIds.length} phiếu đã chọn
+                                        </>
+                                    )}
+                                </motion.button>
+                            )}
+                        </AnimatePresence>
                     </div>
                     {/* add coupon form */}
                     <AddCouponForm fetchCoupons={actions.fetchCoupons} />
@@ -55,12 +82,22 @@ export default function Coupons() {
                                         coupons={state.paginatedCoupons}
                                         onPublic={actions.confirmPublic}
                                         onDelete={actions.confirmDelete}
+                                        isAllSelected={state.isAllSelected}
+                                        toggleSelectAll={actions.toggleSelectAll}
+                                        selectedIds={state.selectedIds}
+                                        toggleSelect={actions.toggleSelect}
+                                        confirmDeleteSelected={actions.confirmDeleteSelected}
+                                        isPending={state.isPending}
                                     />
                                     {/* Desktop View */}
                                     <Table
                                         coupons={state.paginatedCoupons}
                                         onPublic={actions.confirmPublic}
                                         onDelete={actions.confirmDelete}
+                                        isAllSelected={state.isAllSelected}
+                                        toggleSelectAll={actions.toggleSelectAll}
+                                        selectedIds={state.selectedIds}
+                                        toggleSelect={actions.toggleSelect}
                                     />
                                 </motion.div>
                             )}

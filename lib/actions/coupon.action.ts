@@ -130,3 +130,20 @@ export const deleteCouponById = async (id: string) => {
         console.log(error);
     }
 };
+
+export async function deleteSelectedCoupons(selectedIds: string[]) {
+    try {
+        const count = await prisma.coupon.deleteMany({
+            where: {
+                id: {
+                    in: selectedIds,
+                },
+            },
+        });
+
+        return { success: true, count: count.count };
+    } catch (error) {
+        console.error('Error deleting Coupons:', error);
+        return { success: false, error: 'Failed to delete Coupons' };
+    }
+}

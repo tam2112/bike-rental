@@ -13,16 +13,32 @@ import StatusBadge from '../StatusBadge';
 interface TableProps {
     motors: MotorType[];
     onDelete: (id: string, name: string) => void;
+    isAllSelected: boolean;
+    toggleSelectAll: () => void;
+    selectedIds: string[];
+    toggleSelect: (id: string) => void;
 }
 
-export default function Table({ motors, onDelete }: TableProps) {
+export default function Table({
+    motors,
+    onDelete,
+    isAllSelected,
+    toggleSelectAll,
+    selectedIds,
+    toggleSelect,
+}: TableProps) {
     return (
         <div className="hidden lg:block bg-white dark:bg-slate-850 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm overflow-hidden">
             <table className="w-full text-left border-collapse">
                 <thead className="bg-slate-50/50 dark:bg-slate-800/50 border-b border-slate-200 dark:border-slate-800">
                     <tr>
                         <th className="p-4 w-10">
-                            <input type="checkbox" className="rounded accent-indigo-600" />
+                            <input
+                                type="checkbox"
+                                className="rounded text-indigo-600 accent-indigo-600 h-4 w-4 cursor-pointer"
+                                checked={isAllSelected}
+                                onChange={toggleSelectAll}
+                            />
                         </th>
                         <th className="px-6 py-4 text-xs font-bold uppercase text-slate-500">Hình ảnh</th>
                         <th className="px-6 py-4 text-xs font-bold uppercase text-slate-500">Tên xe & Loại</th>
@@ -36,10 +52,15 @@ export default function Table({ motors, onDelete }: TableProps) {
                     {motors.map((motor) => (
                         <tr
                             key={motor.id}
-                            className="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition-colors"
+                            className={`${selectedIds.includes(motor.id) ? 'bg-primary/10' : 'hover:bg-slate-50/50 dark:hover:bg-slate-800/30'} transition-colors`}
                         >
                             <td className="p-4">
-                                <input type="checkbox" className="rounded accent-indigo-600" />
+                                <input
+                                    type="checkbox"
+                                    className="rounded accent-indigo-600 h-4 w-4 cursor-pointer"
+                                    checked={selectedIds.includes(motor.id)}
+                                    onChange={() => toggleSelect(motor.id)}
+                                />
                             </td>
                             <td className="px-6 py-4">
                                 <div className="h-12 w-16 rounded-lg overflow-hidden border border-slate-200 dark:border-slate-700">

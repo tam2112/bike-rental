@@ -14,9 +14,21 @@ interface TableProps {
     ratings: RatingType[];
     onPublic: (ratingId: string, isPublic: boolean) => void;
     onDelete: (id: string) => void;
+    isAllSelected: boolean;
+    toggleSelectAll: () => void;
+    selectedIds: string[];
+    toggleSelect: (id: string) => void;
 }
 
-export default function Table({ ratings, onPublic, onDelete }: TableProps) {
+export default function Table({
+    ratings,
+    onPublic,
+    onDelete,
+    isAllSelected,
+    toggleSelectAll,
+    selectedIds,
+    toggleSelect,
+}: TableProps) {
     return (
         <div className="hidden lg:block bg-white dark:bg-slate-850 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm">
             <div className="overflow-visible">
@@ -24,7 +36,12 @@ export default function Table({ ratings, onPublic, onDelete }: TableProps) {
                     <thead className="bg-slate-50/50 dark:bg-slate-800/50 border-b border-slate-200 dark:border-slate-800">
                         <tr>
                             <th className="p-4 w-10">
-                                <input type="checkbox" className="rounded text-indigo-600 accent-indigo-600" />
+                                <input
+                                    type="checkbox"
+                                    className="rounded text-indigo-600 accent-indigo-600 h-4 w-4 cursor-pointer"
+                                    checked={isAllSelected}
+                                    onChange={toggleSelectAll}
+                                />
                             </th>
                             <th className="px-6 py-4 text-xs font-bold uppercase text-slate-500">Khách hàng</th>
                             <th className="px-6 py-4 text-xs font-bold uppercase text-slate-500">Xe thuê</th>
@@ -41,10 +58,15 @@ export default function Table({ ratings, onPublic, onDelete }: TableProps) {
                             ratings.map((rating) => (
                                 <tr
                                     key={rating.id}
-                                    className="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition-colors"
+                                    className={`${selectedIds.includes(rating.id) ? 'bg-primary/10' : 'hover:bg-slate-50/50 dark:hover:bg-slate-800/30'} transition-colors`}
                                 >
                                     <td className="p-4">
-                                        <input type="checkbox" className="rounded accent-indigo-600" />
+                                        <input
+                                            type="checkbox"
+                                            className="rounded accent-indigo-600 h-4 w-4 cursor-pointer"
+                                            checked={selectedIds.includes(rating.id)}
+                                            onChange={() => toggleSelect(rating.id)}
+                                        />
                                     </td>
                                     <td className="px-6 py-4">
                                         <div className="flex items-center gap-3">

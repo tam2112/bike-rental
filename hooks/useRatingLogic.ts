@@ -2,7 +2,7 @@
 
 import { useState, useMemo, useEffect } from 'react';
 import { debounce } from 'lodash';
-import { deleteRatingById, updateRatingPublic } from '@/lib/actions/rating.action';
+import { deleteRatingById, deleteSelectedRatings, updateRatingPublic } from '@/lib/actions/rating.action';
 
 import { useRatingStore } from '@/store/rating';
 import { useStatusStore } from '@/store/status';
@@ -22,6 +22,7 @@ export const useRatingLogic = (itemsPerPage = 5) => {
     const [sortBy, setSortBy] = useState('newest');
     const [currentPage, setCurrentPage] = useState(1);
     const [isPending, setIsPending] = useState(false);
+    const [selectedIds, setSelectedIds] = useState<string[]>([]);
 
     useEffect(() => {
         const loadData = async () => {
@@ -31,6 +32,10 @@ export const useRatingLogic = (itemsPerPage = 5) => {
         };
         loadData();
     }, [fetchRatings, fetchRatingStatuses]);
+
+    useEffect(() => {
+        setSelectedIds([]);
+    }, [currentPage]);
 
     const debouncedSearch = useMemo(
         () =>
@@ -72,6 +77,8 @@ export const useRatingLogic = (itemsPerPage = 5) => {
             const response = await deleteRatingById(ratingId);
             if (response?.success) {
                 popup.success('Xóa đánh giá xe thành công!!');
+                // Loại bỏ ID vừa xóa khỏi state selectedIds nếu nó đang được chọn
+                setSelectedIds((prev) => prev.filter((id) => id !== ratingId));
                 await fetchRatings();
             } else {
                 popup.error(response?.message || 'Có lỗi xảy ra khi xóa');
@@ -123,9 +130,51 @@ export const useRatingLogic = (itemsPerPage = 5) => {
             });
     }, [ratings, searchTerm, statusFilter, sortBy]);
 
+    const toggleSelect = (id: string) => {
+        setSelectedIds((prev) => (prev.includes(id) ? prev.filter((item) => item !== id) : [...prev, id]));
+    };
+
+    const toggleSelectAll = (pageIds: string[]) => {
+        const allSelected = pageIds.every((id) => selectedIds.includes(id));
+        if (allSelected) {
+            setSelectedIds((prev) => prev.filter((id) => !pageIds.includes(id)));
+        } else {
+            const newSelection = Array.from(new Set([...selectedIds, ...pageIds]));
+            setSelectedIds(newSelection);
+        }
+    };
+
+    const handleDeleteSelected = async () => {
+        if (selectedIds.length === 0) return;
+        setIsPending(true);
+        try {
+            const response = await deleteSelectedRatings(selectedIds);
+            if (response.success) {
+                popup.success(`Đã xóa ${response.count} đánh giá xe!`);
+                setSelectedIds([]);
+                await fetchRatings();
+            } else {
+                popup.error(response.error || 'Lỗi khi xóa');
+            }
+        } catch (error) {
+            console.error(error);
+        } finally {
+            setIsPending(false);
+        }
+    };
+
+    const confirmDeleteSelected = () => {
+        popup.confirm(
+            `Bạn có chắc chắn muốn xóa ${selectedIds.length} mục đã chọn?`,
+            handleDeleteSelected,
+            'Xác nhận xóa hàng loạt',
+        );
+    };
+
     // LOGIC: PHÂN TRANG
     const totalPages = Math.ceil(filteredRatings.length / itemsPerPage);
     const paginatedRatings = filteredRatings.slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage);
+    const currentPageIds = paginatedRatings.map((c) => c.id);
 
     // Animation Variants
     const pageVariants = {
@@ -148,6 +197,9 @@ export const useRatingLogic = (itemsPerPage = 5) => {
             paginatedRatings,
             totalCount: filteredRatings.length,
             rawTotal: ratings?.length,
+            selectedIds,
+            currentPageIds,
+            isAllSelected: currentPageIds.length > 0 && currentPageIds.every((id) => selectedIds.includes(id)),
         },
         actions: {
             setSearchInput,
@@ -160,6 +212,9 @@ export const useRatingLogic = (itemsPerPage = 5) => {
             setIsPending,
             confirmDelete,
             confirmPublic,
+            toggleSelect,
+            toggleSelectAll: () => toggleSelectAll(currentPageIds),
+            confirmDeleteSelected,
         },
     };
 };

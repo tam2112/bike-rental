@@ -63,6 +63,9 @@ export type MotorHooksType = {
         paginatedMotors: MotorType[];
         totalCount: number;
         rawTotal: number | undefined;
+        selectedIds: string[];
+        currentPageIds: string[];
+        isAllSelected: boolean;
     };
     actions: {
         setSearchInput: Dispatch<SetStateAction<string>>;
@@ -74,6 +77,9 @@ export type MotorHooksType = {
         fetchMotors: () => Promise<void>;
         setIsPending: Dispatch<SetStateAction<boolean>>;
         confirmDelete: (motorId: string, motorName: string) => void;
+        toggleSelect: (id: string) => void;
+        toggleSelectAll: () => void;
+        confirmDeleteSelected: () => void;
     };
 };
 
@@ -87,4 +93,7 @@ export type MotorActionHooksType = {
     fetchMotors: () => Promise<void>;
     setIsPending: Dispatch<SetStateAction<boolean>>;
     confirmDelete: (motorId: string, motorName: string) => void;
+    toggleSelect: (id: string) => void;
+    toggleSelectAll: () => void;
+    confirmDeleteSelected: () => void;
 };

@@ -221,3 +221,20 @@ export const deleteRatingById = async (id: string) => {
         console.log(error);
     }
 };
+
+export async function deleteSelectedRatings(selectedIds: string[]) {
+    try {
+        const count = await prisma.rating.deleteMany({
+            where: {
+                id: {
+                    in: selectedIds,
+                },
+            },
+        });
+
+        return { success: true, count: count.count };
+    } catch (error) {
+        console.error('Error deleting Ratings:', error);
+        return { success: false, error: 'Failed to delete Ratings' };
+    }
+}
